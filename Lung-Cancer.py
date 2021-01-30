@@ -1,12 +1,18 @@
-```python
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 # Author : Amir Shokri
 # github link : https://github.com/amirshnll/Lung-Cancer
 # dataset link : http://archive.ics.uci.edu/ml/datasets/Lung+Cancer
 # email : amirsh.nll@gmail.com
-```
 
 
-```python
+# In[4]:
+
+
 import numpy as np, matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
@@ -18,20 +24,22 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.linear_model import LogisticRegression
 import seaborn as sns
 sns.set()
-```
 
 
-```python
+# In[5]:
+
+
 def Read_Data(address, Name='*.csv', Sperator=';'):
     Data = pd.read_csv(address+Name, sep=Sperator, header=None)
 #    Data = Data.dropna()
     X = Data.drop([0], axis=1)
     Y = Data.iloc[:,0]
     return X, Y
-```
 
 
-```python
+# In[6]:
+
+
 def KNN_Plot(X, Y, n1, n2, knn_title):
     
     '''
@@ -73,10 +81,11 @@ def KNN_Plot(X, Y, n1, n2, knn_title):
     plt.show()
     
     return knn_model
-```
 
 
-```python
+# In[7]:
+
+
 def NB(x, y):
    
     x_train, x_test, y_train, y_test = train_test_split(x, y,
@@ -96,10 +105,11 @@ def NB(x, y):
     print('---------------------------------\n')
     
     return Accuracy
-```
 
 
-```python
+# In[8]:
+
+
 def Tree(X, Y):
     
     x_train, x_test, y_train, y_test = train_test_split(X,
@@ -120,10 +130,11 @@ def Tree(X, Y):
     print('---------------------------------\n')
     
     return Accuracy
-```
 
 
-```python
+# In[80]:
+
+
 def MLP(X, Y):
     
     x_train, x_test, y_train, y_test = train_test_split(X,
@@ -144,10 +155,11 @@ def MLP(X, Y):
     print('---------------------------------\n')
     
     return Accuracy
-```
 
 
-```python
+# In[81]:
+
+
 def LogisticRegressionClf(X, Y):
     
     x_train, x_test, y_train, y_test = train_test_split(X,
@@ -168,163 +180,45 @@ def LogisticRegressionClf(X, Y):
     print('---------------------------------\n')
     
     return Accuracy
-```
 
 
-```python
+# In[82]:
+
+
 address = 'C:/'
 X, Y = Read_Data(address, Name='lc.csv', Sperator=';')
 print(X,Y)
-```
-
-        1   2   3   4   5   6   7   8   9   10  ...  47  48  49  50  51  52  53  \
-    0    0   3   3   1   0   3   1   3   1   1  ...   2   2   2   2   2   2   2   
-    1    0   3   3   2   0   3   3   3   1   1  ...   2   2   2   2   2   2   2   
-    2    0   2   3   2   1   3   3   3   1   2  ...   2   2   2   2   2   2   2   
-    3    0   3   2   1   1   3   3   3   2   2  ...   2   2   2   2   2   2   2   
-    4    0   3   3   2   0   3   3   3   1   2  ...   2   2   2   2   2   2   2   
-    5    0   3   2   1   0   3   3   3   1   2  ...   2   2   2   2   1   2   2   
-    6    0   2   2   1   0   3   1   3   3   3  ...   2   2   1   2   2   2   2   
-    7    0   3   1   1   0   3   1   3   1   1  ...   2   2   2   2   2   2   2   
-    8    0   2   3   2   0   2   2   2   1   2  ...   2   2   2   1   3   2   1   
-    9    0   2   2   0   0   3   2   3   1   1  ...   2   2   2   2   2   2   2   
-    10   0   2   3   2   0   1   2   1   1   2  ...   2   2   2   2   2   1   1   
-    11   0   2   1   1   0   1   2   2   1   2  ...   2   2   2   2   2   2   2   
-    12   0   2   2   1   1   2   3   3   1   1  ...   2   2   2   2   2   1   1   
-    13   0   3   2   2   1   2   2   2   1   1  ...   2   2   2   2   2   2   2   
-    14   0   3   2   2   0   1   1   3   1   1  ...   2   2   2   2   2   2   2   
-    15   0   2   1   1   0   2   1   3   1   1  ...   2   2   2   2   2   1   1   
-    16   0   1   2   1   0   3   3   3   1   2  ...   2   2   2   2   2   1   1   
-    17   0   3   3   2   0   2   1   3   1   1  ...   2   2   1   2   2   2   2   
-    18   0   2   3   1   1   2   2   1   1   1  ...   3   3   3   3   1   3   3   
-    19   0   2   3   1   1   1   2   1   1   1  ...   2   2   2   2   2   2   2   
-    20   0   3   3   1   0   3   3   1   1   1  ...   2   2   2   2   3   2   2   
-    21   0   2   2   2   0   2   1   2   1   1  ...   2   2   2   2   2   2   2   
-    22   0   2   2   1   0   2   2   2   1   1  ...   3   3   2   2   3   2   2   
-    23   0   3   2   2   0   2   2   2   1   1  ...   2   2   2   3   1   2   2   
-    24   0   2   1   1   0   2   2   1   1   1  ...   2   2   3   2   2   2   2   
-    25   0   2   3   2   1   2   2   3   1   1  ...   2   2   2   2   2   2   2   
-    26   0   2   3   1   0   2   3   3   1   1  ...   2   2   2   2   2   2   2   
-    
-        54  55  56  
-    0    1   2   2  
-    1    2   1   2  
-    2    2   2   2  
-    3    1   2   2  
-    4    2   1   2  
-    5    2   1   2  
-    6    1   2   2  
-    7    1   2   2  
-    8    1   2   2  
-    9    2   2   2  
-    10   2   2   1  
-    11   1   2   2  
-    12   1   2   2  
-    13   2   2   2  
-    14   1   2   2  
-    15   1   2   2  
-    16   2   2   1  
-    17   2   1   2  
-    18   2   2   1  
-    19   2   2   1  
-    20   2   2   1  
-    21   1   2   1  
-    22   2   2   1  
-    23   2   2   2  
-    24   2   2   1  
-    25   1   2   2  
-    26   2   2   2  
-    
-    [27 rows x 56 columns] 0     1
-    1     1
-    2     1
-    3     1
-    4     1
-    5     1
-    6     1
-    7     1
-    8     2
-    9     2
-    10    2
-    11    2
-    12    2
-    13    2
-    14    2
-    15    2
-    16    2
-    17    2
-    18    3
-    19    3
-    20    3
-    21    3
-    22    3
-    23    3
-    24    3
-    25    3
-    26    3
-    Name: 0, dtype: int64
-    
 
 
-```python
+# In[83]:
+
+
 n1 = 1
 n2 = 12
 knn_title = 'lung cancer knn Classifier'
 KNN_Plot(X, Y, n1, n2, knn_title)
 
-```
+
+# In[84]:
 
 
-![png](output_9_0.png)
-
-
-
-
-
-    KNeighborsClassifier(n_neighbors=11, weights='distance')
-
-
-
-
-```python
 Accuracy = NB(X, Y)
-```
-
-    GaussianNB Accuracy: 
-    66.67
-    ---------------------------------
-    
-    
 
 
-```python
+# In[85]:
+
+
 Accuracy = Tree(X, Y)
-```
-
-    DecisionTree Accuracy: 
-    83.33
-    ---------------------------------
-    
-    
 
 
-```python
+# In[86]:
+
+
 Accuracy = MLP(X, Y)
-```
-
-    MLP Accuracy: 
-    16.67
-    ---------------------------------
-    
-    
 
 
-```python
+# In[16]:
+
+
 LGR_Accuraccy = LogisticRegressionClf(X, Y)
-```
 
-    LogisticRegression Accuracy: 
-    50.0
-    ---------------------------------
-    
-    
